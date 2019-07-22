@@ -3,6 +3,7 @@ import 'package:flutter_redux_sample/module/auth/state.dart';
 import 'package:flutter_redux_sample/store/app_state.dart';
 import 'package:flutter_redux_sample/util/king_toast.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_thunk/redux_thunk.dart';
 
 import 'User.dart';
 
@@ -25,10 +26,10 @@ AuthState _login(AuthState state, LoginAction action) {
   return state;
 }
 
-void loginDelay(Store<AppState> store) async {
-//  await new Future.delayed(
-//    new Duration(seconds: 3),
-//    () => KingToast.show("ready"),
-//  );
+ThunkAction<AppState> loginDelay = (Store<AppState> store) async {
+  await new Future.delayed(
+    new Duration(seconds: 3),
+    () => KingToast.show("ready"),
+  );
   store.dispatch(LoginAction());
-}
+};
